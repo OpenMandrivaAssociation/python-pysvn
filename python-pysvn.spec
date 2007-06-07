@@ -11,7 +11,7 @@ Source0:	%{oname}-%{version}.tar.gz
 Patch0:		pysvn-no_rpath.diff
 Patch1:		pysvn-optflags.diff
 BuildRequires:	libapr-devel
-BuildRequires:	libexpat-devel > 2.0.1
+BuildRequires:	libexpat-devel
 BuildRequires:	libneon-devel
 BuildRequires:	libpython-devel
 BuildRequires:	subversion-devel
