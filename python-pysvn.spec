@@ -15,7 +15,6 @@ BuildRequires:	libexpat-devel
 BuildRequires:	libneon-devel
 BuildRequires:	libpython-devel
 BuildRequires:	subversion-devel
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 %description
 pysvn is a highlevel and easy to use Python bindings to Subversion.
