@@ -10,10 +10,10 @@ URL:		http://pysvn.tigris.org
 Source0:	%{oname}-%{version}.tar.gz
 Patch0:		pysvn-no_rpath.diff
 Patch1:		pysvn-optflags.diff
-BuildRequires:	libapr-devel
-BuildRequires:	libexpat-devel
+BuildRequires:	apr-devel
+BuildRequires:	expat-devel
 BuildRequires:	neon-devel
-BuildRequires:	libpython-devel
+BuildRequires:	python-devel
 BuildRequires:	subversion-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
