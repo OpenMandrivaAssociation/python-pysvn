@@ -12,10 +12,10 @@ Patch0:		pysvn-no_rpath.diff
 Patch1:		pysvn-optflags.diff
 BuildRequires:	libapr-devel
 BuildRequires:	libexpat-devel
-BuildRequires:	libneon-devel
+BuildRequires:	neon-devel
 BuildRequires:	libpython-devel
 BuildRequires:	subversion-devel
-BuildRoot:	%{_tmppath}/%{name}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 pysvn is a highlevel and easy to use Python bindings to Subversion.
