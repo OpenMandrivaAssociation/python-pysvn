@@ -10,11 +10,12 @@ URL:		http://pysvn.tigris.org
 Source0:	%{oname}-%{version}.tar.gz
 Patch0:		pysvn-no_rpath.diff
 Patch1:		pysvn-optflags.diff
+Patch2:		pysvn-linkage.patch
 BuildRequires:	apr-devel
 BuildRequires:	expat-devel
 BuildRequires:	neon-devel
-BuildRequires:	python-devel
 BuildRequires:	subversion-devel
+%py_requires -d
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -35,20 +36,21 @@ Reference.
 %setup -q -n %{oname}-%{version}
 %patch0 -p0
 %patch1 -p0
-
-cd Source && python setup.py configure
+%patch2 -p0 -b .linkage
 
 %build
-%make -C Source
+cd Source
+python setup.py configure
+%make LDFLAGS="%{?ldflags}" 
 
 %install
 rm -rf %{buildroot}
 
-install -d %{buildroot}%{py_sitedir}/%{oname}
-cp -a Source/%oname/*.py %{buildroot}%{py_sitedir}/%{oname}
+install -d %{buildroot}%{py_platsitedir}/%{oname}
+cp -a Source/%oname/*.py %{buildroot}%{py_platsitedir}/%{oname}
 install -d %{buildroot}%{py_platsitedir}/%{oname}
 cp -a Source/%{oname}/_pysvn*.so %{buildroot}%{py_platsitedir}/%{oname}
-%py_compile %{buildroot}%{py_sitedir}/%{oname}
+%py_compile %{buildroot}%{py_platsitedir}/%{oname}
 
 %clean
 rm -rf %{buildroot}
@@ -56,8 +58,6 @@ rm -rf %{buildroot}
 %files 
 %defattr(-,root,root)
 %doc LICENSE.txt
-%dir %{py_sitedir}/%{oname}
-%{py_sitedir}/%{oname}/*
 %dir %{py_platsitedir}/%{oname}
 %{py_platsitedir}/%{oname}/*
 
