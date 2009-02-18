@@ -3,7 +3,7 @@
 Summary:	Highlevel Subversion Python bindings
 Name:		python-%{oname}
 Version:	1.5.1
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	Apache License
 Group:		Development/Python
 URL:		http://pysvn.tigris.org 
@@ -11,6 +11,7 @@ Source0:	%{oname}-%{version}.tar.gz
 Patch0:		pysvn-no_rpath.diff
 Patch1:		pysvn-optflags.diff
 Patch2:		pysvn-linkage.patch
+Patch3:		pysvn-1.5-py26.patch
 BuildRequires:	apr-devel
 BuildRequires:	expat-devel
 BuildRequires:	neon-devel
@@ -37,6 +38,7 @@ Reference.
 %patch0 -p0
 %patch1 -p0
 %patch2 -p0 -b .linkage
+%patch3 -p1 -b .py26
 
 %build
 cd Source
