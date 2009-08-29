@@ -2,7 +2,7 @@
 
 Summary:	Highlevel Subversion Python bindings
 Name:		python-%{oname}
-Version:	1.6.3
+Version:	1.7.0
 Release:	%mkrel 1
 License:	Apache License
 Group:		Development/Python
