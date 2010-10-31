@@ -2,8 +2,8 @@
 
 Summary:	Highlevel Subversion Python bindings
 Name:		python-%{oname}
-Version:	1.7.2
-Release:	%mkrel 2
+Version:	1.7.4
+Release:	%mkrel 1
 License:	Apache License
 Group:		Development/Python
 URL:		http://pysvn.tigris.org 
@@ -13,7 +13,7 @@ BuildRequires:	expat-devel
 BuildRequires:	neon-devel
 BuildRequires:	subversion-devel
 BuildRequires:	subversion-tools
-%py_requires -d
+BuildRequires:	python-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -30,22 +30,30 @@ This package contains the pysvn Programmer's Guide and the Programmer's
 Reference.
 
 %prep
-
 %setup -q -n %{oname}-%{version}
 
 %build
 cd Source
-python setup.py configure
-%make LDFLAGS="%{?ldflags}" 
+python setup.py configure --verbose --fixed-module-name --enable-debug
+
+#fix flags
+sed -i -e 's|$(LDLIBS)|$(LDFLAGS) $(LDLIBS)|g' Makefile
+sed -i -e 's|-Wall -fPIC|%{optflags} -fPIC|g' Makefile
+
+#fix build
+sed -i -e 's|-lssl|-lssl -lpython2.7 -lapr-1 -lsvn_fs-1 -lsvn_wc-1 -lsvn_subr-1|g' Makefile
+
+#disable rpath
+sed -i -e 's|-Wl,--rpath -Wl,%{_libdir}||g' Makefile
+
+%make LDFLAGS="%{ldflags}" 
 
 %install
 rm -rf %{buildroot}
 
 install -d %{buildroot}%{py_platsitedir}/%{oname}
 cp -a Source/%oname/*.py %{buildroot}%{py_platsitedir}/%{oname}
-install -d %{buildroot}%{py_platsitedir}/%{oname}
 cp -a Source/%{oname}/_pysvn*.so %{buildroot}%{py_platsitedir}/%{oname}
-%py_compile %{buildroot}%{py_platsitedir}/%{oname}
 
 %clean
 rm -rf %{buildroot}
@@ -53,8 +61,7 @@ rm -rf %{buildroot}
 %files 
 %defattr(-,root,root)
 %doc LICENSE.txt
-%dir %{py_platsitedir}/%{oname}
-%{py_platsitedir}/%{oname}/*
+%{py_platsitedir}/%{oname}
 
 %files docs
 %defattr(-,root,root)
