@@ -22,6 +22,7 @@ pysvn is a highlevel and easy to use Python bindings to Subversion.
 %package	docs
 Summary:	Programmer's documentation for pysvn
 Group:		Development/Python
+BuildArch:	noarch
 
 %description	docs
 pysvn is a highlevel and easy to use Python bindings to Subversion.
