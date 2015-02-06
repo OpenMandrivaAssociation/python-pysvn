@@ -3,7 +3,7 @@
 Summary:	Highlevel Subversion Python bindings
 Name:		python-%{oname}
 Version:	1.7.6
-Release:	1
+Release:	2
 License:	Apache License
 Group:		Development/Python
 URL:		http://pysvn.tigris.org 
