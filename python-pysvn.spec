@@ -6,7 +6,7 @@ Version:	1.7.6
 Release:	2
 License:	Apache License
 Group:		Development/Python
-URL:		http://pysvn.tigris.org 
+URL:		https://pysvn.tigris.org 
 Source0:	http://pysvn.barrys-emacs.org/source_kits/%{oname}-%{version}.tar.gz
 BuildRequires:	apr-devel
 BuildRequires:	apr-util-devel
