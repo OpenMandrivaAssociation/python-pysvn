@@ -8,6 +8,7 @@ License:	Apache License
 Group:		Development/Python
 URL:		https://pysvn.tigris.org 
 Source0:	http://pysvn.barrys-emacs.org/source_kits/%{oname}-%{version}.tar.gz
+BuildRequires:	make
 BuildRequires:	apr-devel
 BuildRequires:	apr-util-devel
 BuildRequires:	expat-devel
